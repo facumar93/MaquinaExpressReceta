@@ -38,15 +38,17 @@ namespace Full_GRASP_And_SOLID.Library
             return productcost + equipcost;
         }
 
-        public void PrintRecipe()
+        public void PrePrintRecipe()
         {
-            Console.WriteLine($"Receta de {this.FinalProduct.Description}:");
+            ConsolePrint print = new ConsolePrint();
+            print.Print($"Receta de {this.FinalProduct.Description}:");
+            
             foreach (Step step in this.steps)
             {
-                Console.WriteLine($"{step.Quantity} de '{step.Input.Description}' " +
+                print.Print($"{step.Quantity} de '{step.Input.Description}' " +
                     $"usando '{step.Equipment.Description}' durante {step.Time}");
             }
-            Console.WriteLine($"Costo total: {GetProductionsCost()}");
+            print.Print($"Costo total: {GetProductionsCost()}");
         }
     }
 }

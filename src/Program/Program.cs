@@ -25,7 +25,7 @@ namespace Full_GRASP_And_SOLID
             recipe.FinalProduct = GetProduct("Café con leche"); // ¿Para qué se consulta si existe ese objeto y luego se setea?
             recipe.AddStep(new Step(GetProduct("Café"), 10, GetEquipment("Cafetera"), 120));
             recipe.AddStep(new Step(GetProduct("Leche"), 15, GetEquipment("Hervidor"), 60));
-            recipe.PrintRecipe();
+            recipe.PrePrintRecipe();
         }
 
         private static void PopulateCatalogs() // ¿Este paso tiene alguna utilidad, porque no instanciar directamente?
