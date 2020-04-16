@@ -13,24 +13,24 @@ namespace Full_GRASP_And_SOLID
 {
     public class Program
     {
-        private static ArrayList productCatalog = new ArrayList(); //"ArrayList", catalogo de productos.
+        private static ArrayList productCatalog = new ArrayList();
 
-        private static ArrayList equipmentCatalog = new ArrayList(); //"ArrayList", catalogo de equipos.
+        private static ArrayList equipmentCatalog = new ArrayList();
 
         public static void Main(string[] args)
         {
-            PopulateCatalogs(); //"Método de la clase Program".
+            PopulateCatalogs();
 
-            Recipe recipe = new Recipe(); //"Instancia receta".
-            recipe.FinalProduct = GetProduct("Café con leche"); // ¿Para qué se consulta si existe ese objeto y luego se setea?
-            recipe.AddStep(new Step(GetProduct("Café"), 10, GetEquipment("Cafetera"), 120));
-            recipe.AddStep(new Step(GetProduct("Leche"), 15, GetEquipment("Hervidor"), 60));
-            recipe.PrePrintRecipe();
+            Recipe recipe = new Recipe();
+            recipe.FinalProduct = GetProduct("Café con leche");
+            recipe.AddStep(new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120));
+            recipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
+            ConsolePrinter.PrintTicket(recipe);
         }
 
-        private static void PopulateCatalogs() // ¿Este paso tiene alguna utilidad, porque no instanciar directamente?
+        private static void PopulateCatalogs()
         {
-            AddProductToCatalog("Café", 100); //con los parametros necesarios para "product".
+            AddProductToCatalog("Café", 100);
             AddProductToCatalog("Leche", 200);
             AddProductToCatalog("Café con leche", 300);
 
@@ -40,12 +40,12 @@ namespace Full_GRASP_And_SOLID
 
         private static void AddProductToCatalog(string description, double unitCost)
         {
-            productCatalog.Add(new Product(description, unitCost)); //"Instancia y agrega al Array".
+            productCatalog.Add(new Product(description, unitCost));
         }
 
         private static void AddEquipmentToCatalog(string description, double hourlyCost)
         {
-            equipmentCatalog.Add(new Equipment(description, hourlyCost)); //"Instancia y agrega al Array".
+            equipmentCatalog.Add(new Equipment(description, hourlyCost));
         }
 
         private static Product ProductAt(int index)
@@ -67,7 +67,7 @@ namespace Full_GRASP_And_SOLID
         private static Equipment GetEquipment(string description)
         {
             var query = from Equipment equipment in equipmentCatalog where equipment.Description == description select equipment;
-            return query.FirstOrDefault(); //¿Qué pasa so no se cumple?.
+            return query.FirstOrDefault();
         }
     }
 }
